@@ -40,7 +40,6 @@ function moleTimer(e) {
         console.log(sec);
         sec--;
         if (sec < 0) {
-            console.log("In the if");
             changeImg(e);
         }
     },1000);
