@@ -15,6 +15,7 @@ imgFive.addEventListener('click', checkForPoint);
 let imgs = document.querySelectorAll('img');
 const easyBtn = document.querySelector('.easy');
 easyBtn.addEventListener('click', moleTimer);
+//Made sec a global variable so that it can be change from inside functions
 let sec;
 
 //The functions that toggles the image depending on the if it has mole or hole as a class name
