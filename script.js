@@ -15,7 +15,7 @@ imgFive.addEventListener('click', checkForPoint);
 let imgs = document.querySelectorAll('img');
 const easyBtn = document.querySelector('.easy');
 easyBtn.addEventListener('click', moleTimer);
-
+let sec;
 
 //The functions that toggles the image depending on the if it has mole or hole as a class name
 function changeImg(e) {
@@ -25,16 +25,20 @@ function changeImg(e) {
             imgs[img].src = "img/mole.jpg";
             imgs[img].classList.add('mole');
             imgs[img].classList.remove('hole');
+            sec = 5;
         } else {
             imgs[img].src = "img/hole.jpg"
             imgs[img].classList.add('hole');
             imgs[img].classList.remove('mole');
+            sec = 5;
         }
     }
 }
 
 function moleTimer(e) {
-    let sec = 5;
+    if (e.target.classList.contains('easy')) {
+        sec = 5;
+    }
 
     let timer = setInterval( () => {
         console.log(sec);
