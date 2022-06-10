@@ -12,19 +12,14 @@ imgFour.addEventListener('click', changeImg);
 imgFive.addEventListener('click', changeImg);
 
 //This is for the buttons that dictate difficulty
-let imgs = document.querySelectorAll('img');
+let imgs = document.querySelectorAll('.gameImg');
 const easyBtn = document.querySelector('.easy');
-easyBtn.addEventListener('click', moleTimer);
-
-
-let debug = document.querySelector('.debug');
-debug.addEventListener('click', () => {
-    console.log(imgs.entries());
-})
-
-
-
-
+easyBtn.addEventListener('click', () => {
+    for (let i = 0; i < imgs.length; i++) {
+        console.log("In the for loop")
+        console.log(imgs[i]);
+    }
+});
 
 
 
@@ -55,10 +50,7 @@ function moleTimer(e) {
         sec--;
         if (sec < 0) {
             console.log("In the if");
-            for (let img of imgs) {
-                console.log("In the for loop")
-                changeImg(e);
-            }
+
         }
     },1000);
 }
