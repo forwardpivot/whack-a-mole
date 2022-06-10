@@ -5,11 +5,11 @@ const imgThree = document.querySelector('.three');
 const imgFour = document.querySelector('.four');
 const imgFive = document.querySelector('.five')
 
-imgOne.addEventListener('click', changeImg);
-imgTwo.addEventListener('click', changeImg);
-imgThree.addEventListener('click', changeImg);
-imgFour.addEventListener('click', changeImg);
-imgFive.addEventListener('click', changeImg);
+imgOne.addEventListener('click', checkForPoint);
+imgTwo.addEventListener('click', checkForPoint);
+imgThree.addEventListener('click', checkForPoint);
+imgFour.addEventListener('click', checkForPoint);
+imgFive.addEventListener('click', checkForPoint);
 
 //This is for the buttons that dictate difficulty
 let imgs = document.querySelectorAll('img');
@@ -17,7 +17,7 @@ const easyBtn = document.querySelector('.easy');
 easyBtn.addEventListener('click', moleTimer);
 
 
-//The function that toggles the image depending on the if it has mole or hole as a class name
+//The functions that toggles the image depending on the if it has mole or hole as a class name
 function changeImg(e) {
     const classList = e.target.classList;
     for (let img in imgs) {
@@ -34,7 +34,7 @@ function changeImg(e) {
 }
 
 function moleTimer(e) {
-    let sec = 2;
+    let sec = 5;
 
     let timer = setInterval( () => {
         console.log(sec);
@@ -43,4 +43,12 @@ function moleTimer(e) {
             changeImg(e);
         }
     },1000);
+}
+
+//The function that checks to see if they get a point
+function checkForPoint(e) {
+    const classList = e.target.classList;
+    if (classList.contains('mole')) {
+        console.log("You got a point!")
+    }
 }
