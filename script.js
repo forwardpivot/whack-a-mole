@@ -12,7 +12,7 @@ imgFour.addEventListener('click', changeImg);
 imgFive.addEventListener('click', changeImg);
 
 //This is for the buttons that dictate difficulty
-let imgs = document.querySelectorAll('.gameImg');
+let imgs = document.querySelectorAll('img');
 const easyBtn = document.querySelector('.easy');
 easyBtn.addEventListener('click', moleTimer);
 
@@ -20,16 +20,15 @@ easyBtn.addEventListener('click', moleTimer);
 //The function that toggles the image depending on the if it has mole or hole as a class name
 function changeImg(e) {
     const classList = e.target.classList;
-    for (let i = 0; i < imgs.length; i++) {
-        if ( imgs[i].classList.contains('hole') ) {
-            imgs[i].src = "img/mole.jpg";
-            imgs[i].classList.add('mole');
-            imgs[i].classList.remove('hole');
-            console.log(classList);
+    for (let img in imgs) {
+        if (imgs[img].classList.contains('hole') ) {
+            imgs[img].src = "img/mole.jpg";
+            imgs[img].classList.add('mole');
+            imgs[img].classList.remove('hole');
         } else {
-            imgs[i].src = "img/hole.jpg"
-            imgs[i].classList.add('hole');
-            imgs[i].classList.remove('mole');
+            imgs[img].src = "img/hole.jpg"
+            imgs[img].classList.add('hole');
+            imgs[img].classList.remove('mole');
         }
     }
 }
