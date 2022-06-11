@@ -19,7 +19,7 @@ easyBtn.addEventListener('click', gameCountdown);
 //Global variables so that they can be change from inside functions
 let sec;
 let highscore = 0;
-let countdown = 60;
+let countdown = 10;
 
 //Grabbing the score, and the timer DOM things
 const score = document.querySelector('.score');
@@ -58,12 +58,19 @@ function moleTimer(e) {
         }
     },1000);
 }
-
+//The timer for the game
 function gameCountdown() {
     let timer = setInterval(() => {
-        countdown--;
-        console.log(`In gameCountdown. Sec is equal to ${countdown}`);
-        gameTimer.textContent = countdown;
+        if (countdown < 0) {
+            for (i = 0; i < 100; i++) {
+            window.clearInterval(i);
+            console.log(`i is equal to ${i}`);
+            }
+        }
+        if(countdown > 0) {
+            countdown--;
+            gameTimer.textContent = countdown;
+        }
     }, 1000);
 }
 
