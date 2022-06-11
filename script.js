@@ -19,7 +19,7 @@ easyBtn.addEventListener('click', gameCountdown);
 //Global variables so that they can be change from inside functions
 let sec;
 let highscore = 0;
-let countdown = 14;
+let countdown = 19;
 
 //Grabbing the score, and the timer DOM things
 const score = document.querySelector('.score');
@@ -37,7 +37,7 @@ function changeImg(e) {
             imgs[img].classList.remove('hole');
             sec = 5;
         } else {
-            imgs[img].src = "img/hole.jpg"
+            imgs[img].src = "img/hole.jpg";
             imgs[img].classList.add('hole');
             imgs[img].classList.remove('mole');
             sec = 5;
@@ -51,8 +51,11 @@ function moleTimer(e) {
     }
 
     let timer = setInterval( () => {
-        if (countdown <= 0) {
+        if (countdown == 0) {
             clearInterval(timer);
+            for (let img in imgs) {
+                imgs[img].src = "img/hole.jpg";
+            }
         }
         console.log(sec);
         sec--;
@@ -76,6 +79,9 @@ function gameCountdown() {
 
 //The function that checks to see if they get a point
 function checkForPoint(e) {
+    if (countdown == 0) {
+        return;
+    }
     const classList = e.target.classList;
     if (classList.contains('mole')) {
         console.log("You hit a mole");
