@@ -15,13 +15,15 @@ imgFive.addEventListener('click', checkForPoint);
 let imgs = document.querySelectorAll('img');
 const easyBtn = document.querySelector('.easy');
 easyBtn.addEventListener('click', moleTimer);
+easyBtn.addEventListener('click', gameCountdown);
 //Global variables so that they can be change from inside functions
 let sec;
 let highscore = 0;
+let countdown = 60;
 
 //Grabbing the score, and the timer DOM things
 const score = document.querySelector('.score');
-const gameTimer = document.querySelector('gameTimer');
+const gameTimer = document.querySelector('.gameTimer');
 
 
 
@@ -55,6 +57,14 @@ function moleTimer(e) {
             changeImg(e);
         }
     },1000);
+}
+
+function gameCountdown() {
+    let timer = setInterval(() => {
+        countdown--;
+        console.log(`In gameCountdown. Sec is equal to ${countdown}`);
+        gameTimer.textContent = countdown;
+    }, 1000);
 }
 
 //The function that checks to see if they get a point
