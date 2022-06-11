@@ -15,10 +15,11 @@ imgFive.addEventListener('click', checkForPoint);
 let imgs = document.querySelectorAll('img');
 const easyBtn = document.querySelector('.easy');
 easyBtn.addEventListener('click', moleTimer);
-//Made sec a global variable so that it can be change from inside functions
+//Global variables so that they can be change from inside functions
 let sec;
+let highscore = 0;
 
-//The variables for the score, and the timer
+//Grabbing the score, and the timer DOM things
 const score = document.querySelector('.score');
 const gameTimer = document.querySelector('gameTimer');
 
@@ -61,7 +62,6 @@ function checkForPoint(e) {
     const classList = e.target.classList;
     if (classList.contains('mole')) {
         console.log("You hit a mole");
-        let highscore = 0;
         highscore++;
         score.textContent = highscore;
     }
