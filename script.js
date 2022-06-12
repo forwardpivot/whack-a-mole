@@ -28,13 +28,12 @@ const gameTimer = document.querySelector('.gameTimer');
 //THE IS FOR THE REPLAY BUTTON
 const replayBtn = document.querySelector('.replayBtn');
 replayBtn.addEventListener('click', () => {
-    console.log("You clicked replay");
     location.reload();
 });
 
 
 
-//The functions that toggles the image depending on the if it has mole or hole as a class name
+//The functions that toggles the image depending on if it has mole or hole as a class name
 function changeImg(e) {
     const classList = e.target.classList;
     for (let img in imgs) {
@@ -64,7 +63,6 @@ function moleTimer(e) {
                 imgs[img].src = "img/hole.jpg";
             }
         }
-        console.log(sec);
         sec--;
         if (sec < 0) {
             changeImg(e);
@@ -74,7 +72,7 @@ function moleTimer(e) {
 //The timer for the game
 function gameCountdown() {
     let timer = setInterval(() => {
-        if (countdown < 0) {
+        if (countdown == 0) {
             clearInterval(timer);
         }
         if(countdown > 0) {
@@ -91,7 +89,6 @@ function checkForPoint(e) {
     }
     const classList = e.target.classList;
     if (classList.contains('mole')) {
-        console.log("You hit a mole");
         highscore++;
         score.textContent = highscore;
     }
