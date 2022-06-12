@@ -13,11 +13,20 @@ imgFive.addEventListener('click', checkForPoint);
 
 //This is for the buttons that dictate difficulty
 let imgs = document.querySelectorAll('img');
-const easyBtn = document.querySelector('.easy');
+const easyBtn = document.querySelector('.easyBtn');
+const normalBtn = document.querySelector('.normalBtn');
+const hardBtn = document.querySelector('.hardBtn');
+
 easyBtn.addEventListener('click', moleTimer);
 easyBtn.addEventListener('click', gameCountdown);
+normalBtn.addEventListener('click', moleTimer);
+normalBtn.addEventListener('click', gameCountdown);
+hardBtn.addEventListener('click', moleTimer);
+hardBtn.addEventListener('click', gameCountdown);
+
 //Global variables so that they can be change from inside functions
-let sec;
+let sec = 0;
+let difficulty = 0;
 let highscore = 0;
 let countdown = 19;
 
@@ -41,20 +50,28 @@ function changeImg(e) {
             imgs[img].src = "img/mole.jpg";
             imgs[img].classList.add('mole');
             imgs[img].classList.remove('hole');
-            sec = 5;
+            sec = difficulty;
         } else {
             imgs[img].src = "img/hole.jpg";
             imgs[img].classList.add('hole');
             imgs[img].classList.remove('mole');
-            sec = 5;
+            sec = difficulty;
         }
     }
 }
 
 function moleTimer(e) {
-    if (e.target.classList.contains('easy')) {
-        sec = 5;
+    if (e.target.classList.contains('easyBtn')) {
+        console.log("You clicked easy");
+        difficulty = 5;
+    } else if (e.target.classList.contains('normalBtn')) {
+        console.log("You clicked normal");
+        difficulty = 3;
+    } else {
+        console.log("You clicked hard");
+        difficulty = 1;
     }
+
 
     let timer = setInterval( () => {
         if (countdown == 0) {
@@ -64,6 +81,7 @@ function moleTimer(e) {
             }
         }
         sec--;
+        console.log(sec)
         if (sec < 0) {
             changeImg(e);
         }
