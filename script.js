@@ -25,6 +25,13 @@ let countdown = 19;
 const score = document.querySelector('.score');
 const gameTimer = document.querySelector('.gameTimer');
 
+//THE IS FOR THE REPLAY BUTTON
+const replayBtn = document.querySelector('.replayBtn');
+replayBtn.addEventListener('click', () => {
+    console.log("You clicked replay");
+    location.reload();
+});
+
 
 
 //The functions that toggles the image depending on the if it has mole or hole as a class name
