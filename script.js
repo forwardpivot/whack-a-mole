@@ -103,15 +103,12 @@ function changeImg(e) {
 
 function moleTimer(e) {
     if (e.target.classList.contains('easyBtn')) {
-        console.log("You clicked easy");
         difficulty = 5;
         sec = difficulty
     } else if (e.target.classList.contains('normalBtn')) {
-        console.log("You clicked normal");
         difficulty = 3;
         sec = difficulty;
     } else {
-        console.log("You clicked hard");
         difficulty = 1;
         sec = difficulty;
     }
@@ -126,7 +123,6 @@ function moleTimer(e) {
             }
         }
         --sec;
-        console.log(sec)
         if (sec >= 0) {
             changeImg(e);
         } else {
