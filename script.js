@@ -28,7 +28,7 @@ hardBtn.addEventListener('click', gameCountdown);
 let sec = 0;
 let difficulty = 0;
 let highscore = 0;
-let countdown = 19;
+let countdown = 60;
 let isMole = false;
 let selected;
 //Grabbing the score, and the timer DOM things
@@ -52,9 +52,8 @@ and depending on the timer, or if they were hit should pop them back down, and t
 //The functions that toggles the image depending on if it has mole or hole as a class name
 function changeImg(e) {
     const classList = e.target.classList;
-    if (isMole == false) {
+    if (isMole == false && countdown > 0) {
         let num = Math.floor(Math.random() * 5);
-        console.log(`The value of num is ${num}`);
         switch(num) {
             case 0: 
                 moleOne.src = "img/mole.jpg";
@@ -116,11 +115,11 @@ function moleTimer(e) {
 
 
     let timer = setInterval( () => {
-        if (countdown == 0) {
-            clearInterval(timer);
+        if (countdown <= 0) {
             for (let img in imgs) {
                 imgs[img].src = "img/hole.jpg";
             }
+            clearInterval(timer);
         }
         --sec;
         if (sec >= 0) {
