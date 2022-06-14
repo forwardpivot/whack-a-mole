@@ -1,15 +1,15 @@
 // These are to grab the images
-const imgOne = document.querySelector('.one');
-const imgTwo = document.querySelector('.two');
-const imgThree = document.querySelector('.three');
-const imgFour = document.querySelector('.four');
-const imgFive = document.querySelector('.five')
+const moleOne = document.querySelector('.one');
+const moleTwo = document.querySelector('.two');
+const moleThree = document.querySelector('.three');
+const moleFour = document.querySelector('.four');
+const moleFive = document.querySelector('.five')
 
-imgOne.addEventListener('click', checkForPoint);
-imgTwo.addEventListener('click', checkForPoint);
-imgThree.addEventListener('click', checkForPoint);
-imgFour.addEventListener('click', checkForPoint);
-imgFive.addEventListener('click', checkForPoint);
+moleOne.addEventListener('click', checkForPoint);
+moleTwo.addEventListener('click', checkForPoint);
+moleThree.addEventListener('click', checkForPoint);
+moleFour.addEventListener('click', checkForPoint);
+moleFive.addEventListener('click', checkForPoint);
 
 //This is for the buttons that dictate difficulty
 let imgs = document.querySelectorAll('img');
@@ -29,6 +29,7 @@ let sec = 0;
 let difficulty = 0;
 let highscore = 0;
 let countdown = 19;
+let isMole = false;
 
 //Grabbing the score, and the timer DOM things
 const score = document.querySelector('.score');
@@ -40,25 +41,59 @@ replayBtn.addEventListener('click', () => {
     location.reload();
 });
 
+/*I need a way for the moles to pop up randomly, and for them to go back down on click
+* I need a way to set the difficulty based on which button is clicked. 
+* I need my timers to work
+* When a difficulty is selected I think each hole should randomly start popping up the moles,
+and depending on the timer, or if they were hit should pop them back down, and then randomly pop them back up
+*/
+
+// THE GAME FUNCTION
+
+
 
 
 //The functions that toggles the image depending on if it has mole or hole as a class name
 function changeImg(e) {
     const classList = e.target.classList;
-    for (let img in imgs) {
-        if (imgs[img].classList.contains('hole') ) {
-            imgs[img].src = "img/mole.jpg";
-            imgs[img].classList.add('mole');
-            imgs[img].classList.remove('hole');
-            sec = difficulty;
-        } else {
-            imgs[img].src = "img/hole.jpg";
-            imgs[img].classList.add('hole');
-            imgs[img].classList.remove('mole');
-            sec = difficulty;
+    if (isMole == false) {
+        let num = Math.floor(Math.random() * 5);
+        console.log(`The value of num is ${num}`);
+        switch(num) {
+            case 0: 
+                moleOne.src = "img/mole.jpg";
+                moleOne.classList.add('mole');
+                moleOne.classList.remove('hole');
+                isMole = true;
+                break;
+            case 1: 
+                moleTwo.src = "img/mole.jpg";
+                moleTwo.classList.add('mole');
+                moleTwo.classList.remove('hole');
+                isMole = true;
+                break;
+            case 2:
+                moleThree.src = "img/mole.jpg";
+                moleThree.classList.add('mole');
+                moleThree.classList.remove('hole');
+                isMole = true;
+                break;
+            case 3:
+                moleFour.src = "img/mole.jpg";
+                isMole = true;
+                moleFour.classList.add('mole');
+                moleFour.classList.remove('hole');
+                break;
+            case 4:
+                moleFive.src = "img/mole.jpg";
+                moleFive.classList.add('mole');
+                moleFive.classList.remove('hole');
+                isMole = true;
+                break;
         }
     }
 }
+
 
 function moleTimer(e) {
     if (e.target.classList.contains('easyBtn')) {
@@ -71,6 +106,7 @@ function moleTimer(e) {
         console.log("You clicked hard");
         difficulty = 1;
     }
+    
 
 
     let timer = setInterval( () => {
@@ -107,6 +143,11 @@ function checkForPoint(e) {
     }
     const classList = e.target.classList;
     if (classList.contains('mole')) {
+        isMole = false;
+        console.log("You clicked a mole");
+        e.target.src = "img/hole.jpg";
+        classList.add('hole');
+        classList.remove('mole');
         highscore++;
         score.textContent = highscore;
     }
