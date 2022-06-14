@@ -30,7 +30,7 @@ let difficulty = 0;
 let highscore = 0;
 let countdown = 19;
 let isMole = false;
-
+let selected;
 //Grabbing the score, and the timer DOM things
 const score = document.querySelector('.score');
 const gameTimer = document.querySelector('.gameTimer');
@@ -48,10 +48,6 @@ replayBtn.addEventListener('click', () => {
 and depending on the timer, or if they were hit should pop them back down, and then randomly pop them back up
 */
 
-// THE GAME FUNCTION
-
-
-
 
 //The functions that toggles the image depending on if it has mole or hole as a class name
 function changeImg(e) {
@@ -64,31 +60,41 @@ function changeImg(e) {
                 moleOne.src = "img/mole.jpg";
                 moleOne.classList.add('mole');
                 moleOne.classList.remove('hole');
+                selected = moleOne;
                 isMole = true;
+                sec = difficulty;
                 break;
             case 1: 
                 moleTwo.src = "img/mole.jpg";
                 moleTwo.classList.add('mole');
                 moleTwo.classList.remove('hole');
+                selected = moleTwo;
                 isMole = true;
+                sec = difficulty;
                 break;
             case 2:
                 moleThree.src = "img/mole.jpg";
                 moleThree.classList.add('mole');
                 moleThree.classList.remove('hole');
+                selected = moleThree;
                 isMole = true;
+                sec = difficulty;
                 break;
             case 3:
                 moleFour.src = "img/mole.jpg";
                 isMole = true;
                 moleFour.classList.add('mole');
                 moleFour.classList.remove('hole');
+                selected = moleFour;
+                sec = difficulty;
                 break;
             case 4:
                 moleFive.src = "img/mole.jpg";
                 moleFive.classList.add('mole');
                 moleFive.classList.remove('hole');
+                selected = moleFive;
                 isMole = true;
+                sec = difficulty;
                 break;
         }
     }
@@ -99,12 +105,15 @@ function moleTimer(e) {
     if (e.target.classList.contains('easyBtn')) {
         console.log("You clicked easy");
         difficulty = 5;
+        sec = difficulty
     } else if (e.target.classList.contains('normalBtn')) {
         console.log("You clicked normal");
         difficulty = 3;
+        sec = difficulty;
     } else {
         console.log("You clicked hard");
         difficulty = 1;
+        sec = difficulty;
     }
     
 
@@ -116,9 +125,15 @@ function moleTimer(e) {
                 imgs[img].src = "img/hole.jpg";
             }
         }
-        sec--;
+        --sec;
         console.log(sec)
-        if (sec < 0) {
+        if (sec >= 0) {
+            changeImg(e);
+        } else {
+            selected.src = "img/hole.jpg";
+            selected.classList.add('hole');
+            selected.classList.remove('mole');
+            sec = difficulty;
             changeImg(e);
         }
     },1000);
@@ -144,7 +159,6 @@ function checkForPoint(e) {
     const classList = e.target.classList;
     if (classList.contains('mole')) {
         isMole = false;
-        console.log("You clicked a mole");
         e.target.src = "img/hole.jpg";
         classList.add('hole');
         classList.remove('mole');
