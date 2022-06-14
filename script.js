@@ -134,6 +134,7 @@ function moleTimer(e) {
             selected.classList.add('hole');
             selected.classList.remove('mole');
             sec = difficulty;
+            isMole = false;
             changeImg(e);
         }
     },1000);
