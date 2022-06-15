@@ -28,7 +28,7 @@ hardBtn.addEventListener('click', gameCountdown);
 let sec = 0;
 let difficulty = 0;
 let highscore = 0;
-let countdown = 60;
+let countdown = 15;
 let isMole = false;
 let selected;
 //Grabbing the score, and the timer DOM things
@@ -112,8 +112,6 @@ function moleTimer(e) {
         sec = difficulty;
     }
     
-
-
     let timer = setInterval( () => {
         if (countdown <= 0) {
             for (let img in imgs) {
@@ -138,9 +136,15 @@ function moleTimer(e) {
 function gameCountdown() {
     let timer = setInterval(() => {
         if (countdown == 0) {
+            gameTimer.textContent = '0';
             clearInterval(timer);
         }
-        if(countdown > 0) {
+        if(countdown <=10) {
+            gameTimer.style.fontSize = '35px';
+            gameTimer.style.color = 'red';
+            countdown--;
+            gameTimer.textContent = countdown;
+        } else if (countdown > 0) {
             countdown--;
             gameTimer.textContent = countdown;
         }
