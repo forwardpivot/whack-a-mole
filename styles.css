@@ -3,30 +3,27 @@ img {
 }
 
 body {
-    background: hsl(110, 47%, 44%);
+    box-sizing: border-box;
+    margin: 0;
     height: 100vh;
+    background: hsl(110, 47%, 44%);
 }
 
 .info {
     display: flex;
+    justify-content: center;
+    align-content: center;
+    /* margin: 3vw 3vw 0 3vw; */
 }
 
 .btns {
-    display: flex;
-    justify-content: center;
-    align-content: center;
     margin-left: auto;
     margin-right: auto;
-}
-
+  }
 
 .gameBoard {
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.btns {
-    display: flex;
-    justify-content: center;
 }
