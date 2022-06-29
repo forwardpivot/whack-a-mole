@@ -28,7 +28,7 @@ hardBtn.addEventListener('click', gameCountdown);
 let moleUpTimer = 0;
 let difficulty = 0;
 let highscore = 0;
-let countdown = 10;
+let countdown = 60;
 let isMole = false;
 let selected;
 //Grabbing the score, and the timer DOM things
@@ -105,11 +105,11 @@ function moleTimer(e) {
     if (e.target.classList.contains('easyBtn')) {
         difficulty = 4;
         moleUpTimer = difficulty
-        millisecs = 1000;
+        millisecs = 800;
     } else if (e.target.classList.contains('normalBtn')) {
         difficulty = 3;
         moleUpTimer = difficulty;
-        millisecs = 700;
+        millisecs = 600;
     } else {
         difficulty = 1;
         moleUpTimer = difficulty;
@@ -124,7 +124,7 @@ function moleTimer(e) {
             gameTimer.textContent = '0';
             clearInterval(timer);
         }
-        if (moleUpTimer == 0) {
+        if (moleUpTimer >= 0) {
             changeImg(e);
         } else {
             selected.src = "img/hole.jpg";
