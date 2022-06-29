@@ -105,11 +105,11 @@ function moleTimer(e) {
     if (e.target.classList.contains('easyBtn')) {
         difficulty = 4;
         moleUpTimer = difficulty
-        millisecs = 800;
+        millisecs = 1000;
     } else if (e.target.classList.contains('normalBtn')) {
         difficulty = 3;
         moleUpTimer = difficulty;
-        millisecs = 500;
+        millisecs = 700;
     } else {
         difficulty = 1;
         moleUpTimer = difficulty;
@@ -124,7 +124,6 @@ function moleTimer(e) {
             gameTimer.textContent = '0';
             clearInterval(timer);
         }
-        --moleUpTimer;
         if (moleUpTimer == 0) {
             changeImg(e);
         } else {
@@ -135,13 +134,13 @@ function moleTimer(e) {
             isMole = false;
             changeImg(e);
         }
+        --moleUpTimer;
     },millisecs);
 }
 //The timer for the game
 function gameCountdown() {
     let timer = setInterval(() => {
         if (countdown == 0) {
-
             clearInterval(timer);
         }
         if(countdown <=11 && countdown != 0) {
