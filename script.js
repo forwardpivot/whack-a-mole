@@ -101,15 +101,19 @@ function changeImg(e) {
 
 
 function moleTimer(e) {
+    let millisecs = 0;
     if (e.target.classList.contains('easyBtn')) {
         difficulty = 5;
         sec = difficulty
+        millisecs = 1500;
     } else if (e.target.classList.contains('normalBtn')) {
         difficulty = 3;
         sec = difficulty;
+        millisecs = 1000;
     } else {
         difficulty = 1;
         sec = difficulty;
+        millisecs = 500;
     }
     
     let timer = setInterval( () => {
@@ -121,7 +125,7 @@ function moleTimer(e) {
             clearInterval(timer);
         }
         --sec;
-        if (sec >= 0) {
+        if (sec == 0) {
             changeImg(e);
         } else {
             selected.src = "img/hole.jpg";
@@ -131,7 +135,7 @@ function moleTimer(e) {
             isMole = false;
             changeImg(e);
         }
-    },1000);
+    },millisecs);
 }
 //The timer for the game
 function gameCountdown() {
@@ -145,7 +149,7 @@ function gameCountdown() {
             gameTimer.style.color = 'red';
             countdown--;
             gameTimer.textContent = countdown;
-        } else if (countdown >= 0) {
+        } else if (countdown > 0) {
             countdown--;
             gameTimer.textContent = countdown;
         }
