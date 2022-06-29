@@ -25,10 +25,10 @@ hardBtn.addEventListener('click', moleTimer);
 hardBtn.addEventListener('click', gameCountdown);
 
 //Global variables so that they can be change from inside functions
-let sec = 0;
+let moleUpTimer = 0;
 let difficulty = 0;
 let highscore = 0;
-let countdown = 13;
+let countdown = 10;
 let isMole = false;
 let selected;
 //Grabbing the score, and the timer DOM things
@@ -61,7 +61,7 @@ function changeImg(e) {
                 moleOne.classList.remove('hole');
                 selected = moleOne;
                 isMole = true;
-                sec = difficulty;
+                moleUpTimer = difficulty;
                 break;
             case 1: 
                 moleTwo.src = "img/mole.jpg";
@@ -69,7 +69,7 @@ function changeImg(e) {
                 moleTwo.classList.remove('hole');
                 selected = moleTwo;
                 isMole = true;
-                sec = difficulty;
+                moleUpTimer = difficulty;
                 break;
             case 2:
                 moleThree.src = "img/mole.jpg";
@@ -77,7 +77,7 @@ function changeImg(e) {
                 moleThree.classList.remove('hole');
                 selected = moleThree;
                 isMole = true;
-                sec = difficulty;
+                moleUpTimer = difficulty;
                 break;
             case 3:
                 moleFour.src = "img/mole.jpg";
@@ -85,7 +85,7 @@ function changeImg(e) {
                 moleFour.classList.add('mole');
                 moleFour.classList.remove('hole');
                 selected = moleFour;
-                sec = difficulty;
+                moleUpTimer = difficulty;
                 break;
             case 4:
                 moleFive.src = "img/mole.jpg";
@@ -93,7 +93,7 @@ function changeImg(e) {
                 moleFive.classList.remove('hole');
                 selected = moleFive;
                 isMole = true;
-                sec = difficulty;
+                moleUpTimer = difficulty;
                 break;
         }
     }
@@ -103,35 +103,35 @@ function changeImg(e) {
 function moleTimer(e) {
     let millisecs = 0;
     if (e.target.classList.contains('easyBtn')) {
-        difficulty = 5;
-        sec = difficulty
-        millisecs = 1500;
+        difficulty = 4;
+        moleUpTimer = difficulty
+        millisecs = 800;
     } else if (e.target.classList.contains('normalBtn')) {
         difficulty = 3;
-        sec = difficulty;
-        millisecs = 1000;
+        moleUpTimer = difficulty;
+        millisecs = 500;
     } else {
         difficulty = 1;
-        sec = difficulty;
-        millisecs = 500;
+        moleUpTimer = difficulty;
+        millisecs = 250;
     }
     
     let timer = setInterval( () => {
-        if (countdown <= 0) {
+        if (countdown == 0) {
             for (let img in imgs) {
                 imgs[img].src = "img/hole.jpg";
             }
             gameTimer.textContent = '0';
             clearInterval(timer);
         }
-        --sec;
-        if (sec == 0) {
+        --moleUpTimer;
+        if (moleUpTimer == 0) {
             changeImg(e);
         } else {
             selected.src = "img/hole.jpg";
             selected.classList.add('hole');
             selected.classList.remove('mole');
-            sec = difficulty;
+            moleUpTimer = difficulty;
             isMole = false;
             changeImg(e);
         }
@@ -141,11 +141,10 @@ function moleTimer(e) {
 function gameCountdown() {
     let timer = setInterval(() => {
         if (countdown == 0) {
-            
+
             clearInterval(timer);
         }
-        if(countdown >=11) {
-            gameTimer.style.fontSize = '35px';
+        if(countdown <=11 && countdown != 0) {
             gameTimer.style.color = 'red';
             countdown--;
             gameTimer.textContent = countdown;
