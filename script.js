@@ -35,12 +35,6 @@ let selected;
 const score = document.querySelector('.score');
 const gameTimer = document.querySelector('.gameTimer');
 
-//THE IS FOR THE REPLAY BUTTON
-const replayBtn = document.querySelector('.replayBtn');
-replayBtn.addEventListener('click', () => {
-    location.reload();
-});
-
 /*I need a way for the moles to pop up randomly, and for them to go back down on click
 * I need a way to set the difficulty based on which button is clicked. 
 * I need my timers to work
@@ -103,14 +97,23 @@ function changeImg(e) {
 function moleTimer(e) {
     let millisecs = 0;
     if (e.target.classList.contains('easyBtn')) {
+        countdown = 60;
+        highscore = 0;
+        score.textContent = highscore
         difficulty = 4;
         moleUpTimer = difficulty
         millisecs = 800;
     } else if (e.target.classList.contains('normalBtn')) {
+        countdown = 60;
+        highscore = 0;
+        score.textContent = highscore
         difficulty = 3;
         moleUpTimer = difficulty;
         millisecs = 600;
     } else {
+        countdown = 60;
+        highscore = 0;
+        score.textContent = highscore
         difficulty = 1;
         moleUpTimer = difficulty;
         millisecs = 250;
