@@ -23,7 +23,13 @@ body {
 .btns {
     display: flex;
     justify-content: center;
-    margin-bottom: 3vh;
+    margin-bottom: 6vh;
+    gap: 5px
+  }
+
+  button {
+    background-color: white;
+    padding: 10px;
   }
 
 .gameBoard {
